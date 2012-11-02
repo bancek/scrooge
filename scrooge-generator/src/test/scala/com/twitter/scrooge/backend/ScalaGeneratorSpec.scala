@@ -9,7 +9,6 @@ import thrift.test1._
 import thrift.test2._
 import thrift.`def`.default._
 import com.twitter.scrooge.{ThriftStruct, ThriftException, EvalHelper}
-import sun.tools.java.Constants
 import com.twitter.finagle.SourcedException
 
 class ScalaGeneratorSpec extends SpecificationWithJUnit with EvalHelper with JMocker with ClassMocker {
