@@ -50,7 +50,8 @@ class ASTSpec extends SpecificationWithJUnit {
       "HELLOWORLD" ->("helloworld", "Helloworld"),
       "_Foo_bar" ->("_fooBar", "_FooBar"),
       "__foo_bar" ->("__fooBar", "__FooBar"),
-      "ThriftClientRequestID" ->("thriftClientRequestId", "ThriftClientRequestId")
+      "ThriftClientRequestID" ->("thriftClientRequestId", "ThriftClientRequestId"),
+      "XWithPrefix" ->("xWithPrefix", "XWithPrefix")
     )
     "camel case conversion" in {
       simpleCases foreach {

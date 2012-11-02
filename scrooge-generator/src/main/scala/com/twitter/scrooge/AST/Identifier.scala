@@ -45,6 +45,8 @@ object Identifier {
     var state = LeadIn
     val sb = new StringBuilder(str.length)
 
+    val allUpper = str.toUpperCase == str
+
     // c should be upper only if following _ or following <lower> and is <upper>
     // leading underscores should be preserved
     for (c <- str) {
@@ -61,7 +63,10 @@ object Identifier {
           case Lower => sb.append(c)
           case Upper => sb.append(c.toLower)
         }
-        state = if (c.isUpper) Upper else Lower
+        state match {
+          case LeadIn if !allUpper => state = Lower
+          case _ => state = if (c.isUpper) Upper else Lower
+        }
       }
     }
     sb.toString
