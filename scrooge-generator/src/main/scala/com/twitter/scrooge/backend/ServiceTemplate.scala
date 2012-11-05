@@ -39,6 +39,7 @@ trait ServiceTemplate {
       "hasThrows" -> v(hasThrows),
       "throws" -> v(throwsDictionaries),
       "funcName" -> genID(function.funcName.toCamelCase),
+      "funcThriftName" -> genID(function.funcName),
       "typeName" -> genType(function.funcType),
       "fieldParams" -> genFieldParams(function.args)
     )
@@ -72,6 +73,7 @@ trait ServiceTemplate {
             "header" -> v(templates("function")),
             "headerInfo" -> v(toDictionary(f, true)),
             "clientFuncName" -> genID(f.funcName.toCamelCase),
+            "clientFuncThriftName" -> genID(f.funcName),
             "__stats_name" -> genID(f.funcName.toCamelCase.prepend("__stats_")),
             "type" -> genType(f.funcType),
             "void" -> v(f.funcType eq Void),
@@ -104,6 +106,7 @@ trait ServiceTemplate {
         f =>
           Dictionary(
             "serviceFuncName" -> genID(f.funcName.toCamelCase),
+            "serviceFuncThriftName" -> genID(f.funcName),
             "ArgsStruct" -> genID(f.funcName.append("Args").toTitleCase),
             "ResultStruct" -> genID(f.funcName.append("Result").toTitleCase),
             "argNames" ->

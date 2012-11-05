@@ -4,7 +4,7 @@ private __Stats {{__stats_name}} = new __Stats("{{clientFuncName}}");
 {{#headerInfo}}{{>header}}{{/headerInfo}} {
   {{__stats_name}}.requestsCounter.incr();
 
-  Future<{{type}}> rv = this.service.apply(encodeRequest("{{clientFuncName}}", new {{ArgsStruct}}({{argNames}}))).flatMap(new Function<byte[], Future<{{type}}>>() {
+  Future<{{type}}> rv = this.service.apply(encodeRequest("{{clientFuncThriftName}}", new {{ArgsStruct}}({{argNames}}))).flatMap(new Function<byte[], Future<{{type}}>>() {
     public Future<{{type}}> apply(byte[] in) {
       try {
         {{ResultStruct}} result = decodeResponse(in, {{ResultStruct}}.CODEC);

@@ -7,7 +7,7 @@ private[this] object {{__stats_name}} {
 
 {{#headerInfo}}{{>header}}{{/headerInfo}} = {
   {{__stats_name}}.RequestsCounter.incr()
-  this.service(encodeRequest("{{clientFuncName}}", {{ArgsStruct}}({{argNames}}))) flatMap { response =>
+  this.service(encodeRequest("{{clientFuncThriftName}}", {{ArgsStruct}}({{argNames}}))) flatMap { response =>
     val result = decodeResponse(response, {{ResultStruct}})
     val exception =
 {{#hasThrows}}
@@ -20,7 +20,7 @@ private[this] object {{__stats_name}} {
     exception.getOrElse(Future.Done)
 {{/void}}
 {{^void}}
-    exception.orElse(result.success.map(Future.value)).getOrElse(Future.exception(missingResult("{{clientFuncName}}")))
+    exception.orElse(result.success.map(Future.value)).getOrElse(Future.exception(missingResult("{{clientFuncThriftName}}")))
 {{/void}}
   } rescue {
     case ex: SourcedException => {

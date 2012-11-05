@@ -1,4 +1,4 @@
-addFunction("{{serviceFuncName}}", new Function2<TProtocol, Integer, Future<byte[]>>() {
+addFunction("{{serviceFuncThriftName}}", new Function2<TProtocol, Integer, Future<byte[]>>() {
   public Future<byte[]> apply(TProtocol iprot, final Integer seqid) {
     try {
       {{ArgsStruct}} args = {{ArgsStruct}}.decode(iprot);
@@ -11,7 +11,7 @@ addFunction("{{serviceFuncName}}", new Function2<TProtocol, Integer, Future<byte
       }
       return result.flatMap(new Function<{{typeName}}, Future<byte[]>>() {
         public Future<byte[]> apply({{typeName}} value){
-          return reply("{{serviceFuncName}}", seqid, new {{ResultStruct}}.Builder(){{^isVoid}}.success(value){{/isVoid}}.build());
+          return reply("{{serviceFuncThriftName}}", seqid, new {{ResultStruct}}.Builder(){{^isVoid}}.success(value){{/isVoid}}.build());
         }
       }).rescue(new Function<Throwable, Future<byte[]>>() {
         public Future<byte[]> apply(Throwable t) {
@@ -26,7 +26,7 @@ addFunction("{{serviceFuncName}}", new Function2<TProtocol, Integer, Future<byte
     } catch (TProtocolException e) {
       try {
         iprot.readMessageEnd();
-        return exception("{{serviceFuncName}}", seqid, TApplicationException.PROTOCOL_ERROR, e.getMessage());
+        return exception("{{serviceFuncThriftName}}", seqid, TApplicationException.PROTOCOL_ERROR, e.getMessage());
       } catch (Exception unrecoverable) {
         return Future.exception(unrecoverable);
       }

@@ -69,7 +69,6 @@ class JavaGenerator extends Generator {
           default = f.default.map(normalizeCase(_)))
       case f: Function =>
         f.copy(
-          funcName = f.funcName.toCamelCase,
           args = f.args.map(normalizeCase(_)),
           throws = f.throws.map(normalizeCase(_)))
       case c: ConstDefinition =>

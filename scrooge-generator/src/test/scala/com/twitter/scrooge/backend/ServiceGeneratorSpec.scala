@@ -307,11 +307,11 @@ class ServiceGeneratorSpec extends SpecificationWithJUnit with EvalHelper with J
       }
     }
 
-    "camelize names only in the scala bindings" in {
-      val service = new Capsly.FinagledService(null, null) {
-        def getFunction2(name: String) = functionMap(name)
-      }
-      service.getFunction2("badName") must not(be_==(None))
-    }
+    // "camelize names only in the scala bindings" in {
+    //   val service = new Capsly.FinagledService(null, null) {
+    //     def getFunction2(name: String) = functionMap(name)
+    //   }
+    //   service.getFunction2("badName") must not(be_==(None))
+    // }
   }
 }
